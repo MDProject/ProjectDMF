@@ -228,7 +228,9 @@ class DMFNet:
                                 PHI = self.Delta[alpha][alpha_][i][j]/np.sqrt(self.Delta[alpha][alpha][i][i]*self.Delta[alpha_][alpha_][j][j])
                                 if self.Delta[alpha][alpha][i][i]*self.Delta[alpha_][alpha_][j][j] < 0:
                                     print('negtive root')
-                                
+                                if 1-PHI*PHI<0:
+                                    print("negtive error")
+                                    print(PHI)
                                 A = (self.phi(np.sqrt(self.Delta[alpha][alpha][i][i])*x + tmp + self.bias[self.currentLayerIdx+1][i][0])*self.phi(np.sqrt(self.Delta[alpha_][alpha_][j][j])*(PHI*x+np.sqrt(1-PHI*PHI)*y) + tmp_ + self.bias[self.currentLayerIdx+1][j][0])).sum()/20000
                                 B = self.h_mean_next[alpha][i][0]*self.h_mean_next[alpha_][j][0]
                                 self.CTensorNext[alpha][alpha_][i][j] = A - B

@@ -103,7 +103,7 @@ class FCNet:
                 if 1-PHI*PHI < 0:
                     print('negtive root error')
                 A = (Phi1*Phi2).sum()/20000
-                B = self.h_mean[i]*self.h_mean[j]
+                B = h_mean_next[i]*h_mean_next[j]
                 C_next[i][j] = A - B
         # update the next layer information to current layer
         self.h_mean = h_mean_next.copy()

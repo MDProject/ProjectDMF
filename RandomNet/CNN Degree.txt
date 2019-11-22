@@ -1,0 +1,24 @@
+Structure 1
+	self.conv1 = nn.Conv2d(1, 3, 6)
+        self.conv2 = nn.Conv2d(3, 5, 6)
+        self.conv3 = nn.Conv2d(5, 9, 6)
+        #self.conv4 = nn.Conv2d(20, 10, 5)
+        # an affine operation: y = Wx + b
+        self.fc1 = nn.Linear(9 * 13 * 13, 1500)
+        self.fc2 = nn.Linear(1500, 1500)
+        self.fc3 = nn.Linear(1500, 1500)
+        self.fc4 = nn.Linear(1500, 10)
+
+Random input --- Random Weight
+
+Big Matrix dimensionality:
+Layer 0 has total dimensionality 0.932362854960848
+Layer 1 has total dimensionality 0.32221421894893426
+Layer 2 has total dimensionality 0.21144042608477312
+Layer 3 has total dimensionality 0.12956612203995702
+FC layer 0 has dimensionality 0.12956612203995702
+FC layer 1 has dimensionality 0.11613247323919257
+FC layer 2 has dimensionality 0.09856010418253894
+FC layer 3 has dimensionality 0.08882102909175632
+FC layer 4 has dimensionality 0.8020799514024428
+

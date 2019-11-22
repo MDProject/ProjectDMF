@@ -1,7 +1,7 @@
 from FullConnectedNet import *
 from LinkFCCNN import *
 
-net_struct = [100,64,10]
+net_struct = [2*13*13,240,128,64,10]
 net = FCNet(net_struct,detailed_info = True)
 lengthOfLayers = len(net_struct)
 

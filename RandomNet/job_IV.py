@@ -3,7 +3,7 @@ from LinkFCCNN import *
 from FullConnectedNet import *
 import pickle
 
-fpath_mnist = './ProjectDMF/TrueDataTrain/TrueParam_mnist'
+fpath_mnist = './ProjectDMF/TrueDataTrain/TrueParam_mnist_2'
 fpath_cifar10 = './ProjectDMF/TrueDataTrain/TrueParam_cifar10'
 fpath_mnist_param = './ProjectDMF/TrueDataTrain/TrueDataCorvariance_Mnist'
 
