@@ -18,25 +18,31 @@ class Net(nn.Module):
         super(Net, self).__init__()
         # 5x5 square convolution
         # kernel
-        self.conv1 = nn.Conv2d(1, 5, 5)
-        #self.conv2 = nn.Conv2d(5, 10, 5)
-        #self.conv3 = nn.Conv2d(10, 20, 5)
+        self.conv1 = nn.Conv2d(1, 3, 6)
+        self.conv2 = nn.Conv2d(3, 5, 6)
+        self.conv3 = nn.Conv2d(5, 9, 6)
         #self.conv4 = nn.Conv2d(20, 10, 5)
         # an affine operation: y = Wx + b
-        self.fc1 = nn.Linear(5 * 24 * 24, 64)
-        self.fc2 = nn.Linear(64, 10)
+        self.fc1 = nn.Linear(9 * 13 * 13, 1500)
+        self.fc2 = nn.Linear(1500, 1500)
+        self.fc3 = nn.Linear(1500, 1500)
+        self.fc4 = nn.Linear(1500, 10)
+        #self.fc3 = nn.Linear(128, 64)
+        #self.fc4 = nn.Linear(64, 10)
 
     def forward(self, x):
         x = F.relu(self.conv1(x))
         #conv1.append(x)
-        #x = F.relu(self.conv2(x))
+        x = F.relu(self.conv2(x))
         #conv2.append(x)
-        #x = F.relu(self.conv3(x))
+        x = F.relu(self.conv3(x))
         #conv3.append(x)
         #x = F.relu(self.conv4(x))
         #conv4.append(x) 
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
+        #x = F.relu(self.fc2(x))
+        #x = F.relu(self.fc3(x))
         x = self.fc2(x)
         return x
 
@@ -57,8 +63,8 @@ loss_bound = 0.01
 #           this transform will normalize each channel of the input torch.*Tensor i.e. input[channel] = (input[channel] - mean[channel]) / std[channel] 
 # ToTensor  Converts a PIL Image or numpy.ndarray (H x W x C) in the range [0, 255] to a torch.FloatTensor of shape (C x H x W) in the range [0.0, 1.0]
 trans = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (1.0,))])
-train_set = dset.MNIST('../MNIST_DATA/', train=True, transform=trans, download=True)
-test_set = dset.MNIST('../MNIST_DATA/', train=False, transform=trans, download=True)
+train_set = dset.MNIST('./MNIST_DATA/', train=True, transform=trans, download=True)
+test_set = dset.MNIST('./MNIST_DATA/', train=False, transform=trans, download=True)
 train_loader = torch.utils.data.DataLoader(dataset=train_set, 
                                            batch_size=batchSize, 
                                            shuffle=True)
@@ -117,6 +123,6 @@ Param = [p.detach().numpy() for p in params]
 
 # save the trained model params | binary format
 # load the variable in the file one by one
-savePath = './ProjectDMF/TrueDataTrain/TrueParam_mnist'
+savePath = './TrueDataTrain/TrueParam_mnist_1'
 f = open(savePath,'wb')
 pickle.dump(Param,f)

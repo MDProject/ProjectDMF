@@ -22,7 +22,7 @@ Return a 4D-Tensor which has same definition with DynamicMeanField Moledule
 
 def RealDataStructure(data_set, mean = None, var = None):
     # Due to the flexibility of python language, we can use dictionary to implement the switch-case
-    savePath = '../' + data_set + '_DATA/'
+    savePath = './' + data_set + '_DATA/'
     if not os.path.exists(savePath):
         os.mkdir(savePath)
         print("Directory " , savePath,  " Created ")
@@ -78,9 +78,10 @@ def RealDataStructure(data_set, mean = None, var = None):
     return CTensor, h_mean
     
 #RealDataStructure('MNIST')
-CORV, MEAN = RealDataStructure('CIFAR10')
+CORV, MEAN = RealDataStructure('MNIST')
 # write the corvariance to the file
-savePath = './ProjectDMF/TrueDataTrain/TrueDataCorvariance_Cifar10'
+# savePath = './ProjectDMF/TrueDataTrain/TrueDataCorvariance_Cifar10'
+savePath = './TrueDataTrain/TrueDataCorvariance_Mnist'
 f = open(savePath,'wb')
 TData = []
 TData.append(MEAN)
